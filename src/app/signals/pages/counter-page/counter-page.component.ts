@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 
 @Component({
   selector: 'app-counter-page',
@@ -6,5 +6,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./counter-page.component.css']
 })
 export class CounterPageComponent {
+
+  public counter = signal(10);
+
+  //propiedad computada solo lectura no modificable
+  // solo cmabia cuando otras señales cambian
+  public squareCounter = computed( ()=> this.counter() * this.counter() );
+
+  increaseBy( value: number){
+    // this.counter.set(this.counter() +value)
+    this.counter.update( current => current + value)
+  }
 
 }
