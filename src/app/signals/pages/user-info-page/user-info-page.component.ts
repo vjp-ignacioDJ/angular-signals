@@ -8,12 +8,13 @@ import { User } from '../../interfaces/user-request.interface';
   styleUrls: ['./user-info-page.component.css'],
 })
 export class UserInfoPageComponent implements OnInit {
+
+
   public userId = signal(1);
   public currentUser = signal<User | undefined>(undefined);
   public userWasFound = signal(true);
   public fullName = computed<string>(() => {
     if (!this.currentUser()) return 'usuario no encontrado';
-
     return `${this.currentUser()?.first_name} ${this.currentUser()?.last_name}`;
   });
 
